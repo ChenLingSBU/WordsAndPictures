@@ -1,0 +1,10 @@
+% get all the directories in the databaseDirectory folder
+% return a struct images. 
+function [directories] = get_directory(databaseDirectory)
+folders = dir(databaseDirectory);
+idx = 1;
+for i = 3:length(folders)% 1-2 are system files.
+    directories() = folders(i).name;
+end
+end
+

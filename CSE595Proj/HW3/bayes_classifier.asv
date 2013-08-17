@@ -1,0 +1,14 @@
+% Bayes classifier 
+function [testing_imgs] = bayes_classifier(testing_imgs, categories)
+prob = ones(1, length(categories));
+for i = 1:length(testing_imgs)
+    testing_imgs(i).prob = prob;
+    for j = 1:length(categories(1).hist)
+        for k = length(categories)
+            testing_imgs(i).prob(k) = 
+        end
+    end
+end
+end
+
+

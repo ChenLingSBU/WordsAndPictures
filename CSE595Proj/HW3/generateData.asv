@@ -1,0 +1,12 @@
+% generate data for kmeans from the result of dsift
+function [data] = generateData(training_imgs)
+fprintf('generating training data for kmeans from the result of DSIFT features we got\n');
+len = length(training_imgs);
+data = training_imgs(1).d;
+fprintf('generating data from: %s\n', training_imgs(1)
+for i = 2:len
+    data = [data, training_imgs(i).d];
+end
+data = uint8(data); % reqired by kmeans tool for this project here. 
+end
+

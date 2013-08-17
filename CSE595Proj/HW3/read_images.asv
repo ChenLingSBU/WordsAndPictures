@@ -1,0 +1,12 @@
+% read images from databaseDirecotry
+function [images] = read_images(images)
+lenOfImages = length(images);
+for i = 1:lenOfImages
+    lenOfNames = length(images(i).name);
+    for j = 1:lenOfNames
+        images(i).img{j} = rgb2single_gray(imread(fullfile(images(i).path, images(i).name{j})));
+        fprintf('changing %s into single and gray image\n', );
+    end
+end
+end
+

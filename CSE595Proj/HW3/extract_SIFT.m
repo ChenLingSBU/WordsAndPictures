@@ -1,0 +1,10 @@
+% this function is used to extract SIFT features
+function [images] = extract_SIFT(images)
+len = length(images);
+for i = 1 : len
+    [f,d] = vl_dsift(images(i).img, 'step' , 10);
+    images(i).d = d;
+    fprintf('extracting SIFT feature from: %s\n', images(i).name);
+end
+end
+

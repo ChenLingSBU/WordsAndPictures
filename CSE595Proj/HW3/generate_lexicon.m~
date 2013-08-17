@@ -1,0 +1,11 @@
+% Generate lexicon for all the images
+% call computeLexicon function
+function [lexicon] = generate_lexicon(databaseDirectory)
+directories = get_direcotry(databaseDirectory);
+len_of_directories = length(directories);
+databaseDirectory = fullfile(databaseDirectory, );
+for i = 1:len_of_directories
+    lexicon = computeLexicon(fullfile(databaseDirectory, directories(i)));
+end
+end
+

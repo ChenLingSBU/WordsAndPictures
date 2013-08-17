@@ -1,0 +1,13 @@
+% word vector for every image in database
+% each vector is normlized
+function [images] = computeDB_WV(databaseDirectory,images,lexicon)
+%[DBfiles, lenOfFiles] = list_textFiles(databaseDirectory);
+for i=1:length(images)
+    file_name = fullfile(databaseDirectory, DBfiles(i).name);
+    fid = fopen(file_name,'r');
+    [tmp_fileLexicon, location] = computeFile_WV(fid, lexicon);
+    DBfiles(i).wordVector = norm_wordVector(get_wordVector(tmp_fileLexicon, location, length(lexicon)));
+    fclose(fid);
+end
+end
+

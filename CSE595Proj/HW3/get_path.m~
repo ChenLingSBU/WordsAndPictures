@@ -1,0 +1,6 @@
+% get description files' path
+function [path] = get_path(image)
+desc_name = find_descFile(image.name);
+path = fullfile(image.path, desc_name);
+end
+

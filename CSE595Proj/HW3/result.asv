@@ -1,0 +1,8 @@
+% generate confusion matrix
+% tell how accuracy the classifier is
+function result(testing_imgs, categories)
+totalNumof_testing = length(testing_imgs);
+
+
+end
+
