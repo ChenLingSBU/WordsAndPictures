@@ -1,0 +1,30 @@
+% inputs: queryimage -- the filename of an input query image. databaseDirectory -- the pathname to the image database, queryDirectory -- the pathname to the queries
+% outputs: closestmatches -- a cell array with the filenames of the 10 most similar images to the query
+
+% example usage -- [closestMatches] = imageRetrieval_combined('img_bags_clutch_1.jpg','/Users/tlberg/Desktop/teaching/Fall_12/hw/hw1/images/','/Users/tlberg/Desktop/teaching/Fall_12/hw/hw1/queryimages/');
+
+function [closestMatches] = imageRetrieval_combined(queryimage, databaseDirectory, queryDirectory)
+
+% compute tiny-image descriptors for all database images here
+DB_imgs = compute_DBtinyImg(databaseDirectory);
+% compute tiny-image descriptor for the query image here
+QR_img = compute_QuerytinyImg(queryDirectory, queryimage);
+% compute your lexicon here
+load lexicon.mat;
+load stop_linux_words.mat;
+lexicon = computeLexicon(databaseDirectory, stopWord, linuxWord);
+save lexicon.mat;
+% compute word vector descriptors for all database image descriptions here
+DBfiles = computeDB_WV(databaseDirectory, lexicon);
+% compute word vector descriptor for the query image description here
+QueryFiles = computeQuery_WV(queryDirectory, lexicon);
+% compute image based SSD and text based SSD values here
+SSD_Img = SSD_img(DB_imgs, QR_img);
+SSD_Text = SSD_text(DBfiles, QueryFiles, queryimage);
+% return the 10 closest images to the query here using a weighted sum of SSD values
+closestMatches = topCom_similarPics(0.5, SSD_Img,SSD_Text,DB_imgs);
+% visulize the result
+vs_result(queryimage, closestMatches, databaseDirectory, queryDirectory);
+get_descFile(queryimage, closestMatches, databaseDirectory, queryDirectory);
+end
+
